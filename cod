@@ -1,0 +1,21 @@
+import urllib.request
+from bs4 import BeautifulSoup
+
+#specify the url1 
+emag_page = 'https://www.emag.ro/televizor-led-smart-samsung-100-cm-40nu7182-4k-ultra-hd-ue40nu7182uxxh/pd/D890Z1BBM/'
+
+#query the website and return  the html to the variable 'page'
+page = urllib.request.urlopen(emag_page)
+soup = BeautifulSoup(page, 'html.parser')
+print(soup)
+
+# Take out the <div> of name and get its value
+name_box = soup.find('h1', attrs = {'class' : 'page-title'})
+print (name_box)
+name = name_box.text.strip()
+print(name)
+
+#index text
+price_box = soup.find('p', attrs = {'class' : 'product-new-price'})
+pret1 = price_box.text
+print(pret1)
